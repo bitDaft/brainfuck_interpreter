@@ -34,6 +34,10 @@ void filehandler::execute()
   fin.get(ch);
 
   while (!fin.eof()) {
+    if (ch == '\n' || ch == '\r') {
+      fin.get(ch);
+    }
+    // std::cout << ch << '\n';
     switch (ch) {
       case '+':{
         cc->up();
@@ -48,13 +52,13 @@ void filehandler::execute()
         cc->mover();
         break;}
       case ',':{
-        cc->inp(5);
+        cc->inp(65);
         break;}
       case '.':{
         // std::cout<<static_cast<int>(cc->output())<<"b ";
         int t =0;
         cc->outp(t);
-        std::cout <<static_cast<char>(t)<<" ";
+        std::cout <<static_cast<char>(t);
         // std::cin.ignore();
         // std::cin.ignore();
         break;}
@@ -64,6 +68,7 @@ void filehandler::execute()
         int tm=0;
         do{
           fin.get(ch);
+
           if(ch=='[')tm++;
           else if (ch==']')tm--;
         }
@@ -83,8 +88,12 @@ void filehandler::execute()
         }
         break;}
       case ']':{
-        fin.seekg(tt[level]-1,std::ios::beg);
-        level--;
+        int kk;
+        cc->outp(kk);
+        if(kk != 0)
+        {
+          fin.seekg(tt[level],std::ios::beg);
+        }else level--;
         break;}
       default:break;
     }
