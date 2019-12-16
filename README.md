@@ -1,2 +1,2 @@
-# bainfuck_interpreter
-simple brainfuck interpreter
+# brainfuck_interpreter
+A simple brainfuck interpreter in C++.
